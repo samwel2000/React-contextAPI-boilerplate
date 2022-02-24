@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useStateValue } from './StateProvider';
 
 function App() {
+  const [{ count }, dispatch] = useStateValue();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <div style={{
+        width: '100vw',
+        height: '100vh',
+        fontSize: '30px',
+        gap: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+      }}>
+        <button style={{ padding: '2rem' }}
+          onClick={() => dispatch({ type: 'REMOVE_value', item: 1 })}>-</button>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {count} times
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <button style={{ padding: '2rem' }}
+          onClick={() => dispatch({ type: 'ADD_value', item: 1 })}>+</button>
+      </div>
     </div>
   );
 }
